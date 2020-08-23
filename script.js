@@ -37,7 +37,7 @@ $("#event1").addClass("row");
 function compareTime(time1, time2, event){
     if(moment(time1, 'h:mma').isBefore(moment(time2, 'h:mma'))){
         $(event).addClass("future");
-    } else if(moment(time1, 'h').isSame(moment(time2, 'h'))){
+    } else if(moment(time1, 'h:a').isSame(moment(time2, 'h:a'))){
         $(event).addClass("present");
         } else {$(event).addClass("past");
 
