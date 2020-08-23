@@ -1,6 +1,9 @@
+//Variables
 var m = moment();
 var toString = (m.toString())
 var currentTime = m.format('h:mma');
+var button = document.querySelector("button")
+var text = document.querySelector("input")
 var timeBlock1= $("#time1").text();
 var timeBlock2= $("#time2").text();
 var timeBlock3= $("#time3").text();
@@ -19,29 +22,34 @@ var event6= $("#event6");
 var event7= $("#event7");
 var event8= $("#event8");
 var event9= $("#event9");
- 
-$('#currentDay').append(m.format("dddd MMM Do YYYY"));
 
+ 
+//adding css classes
+$('#currentDay').append(m.format("dddd MMM Do YYYY"));
+$(".row").addClass("row");
+$(".hour").addClass("hour"); 
+$(".container").addClass("time-block");
+$(".save").addClass("saveBtn");
+$("#input1").addClass("past");
+$("#event1").addClass("row");
 
 // Function
 function compareTime(time1, time2, event){
     if(moment(time1, 'h:mma').isBefore(moment(time2, 'h:mma'))){
         $(event).addClass("future");
-    } else {$(event).addClass("past");
+    } else if(moment(time1, 'h').isSame(moment(time2, 'h'))){
+        $(event).addClass("present");
+        } else {$(event).addClass("past");
 
-    }
-}
-
-$(".table").addClass("time-block");
-$(".row").addClass("row");
-$(".hour").addClass("hour"); 
-$(".container").addClass("description");
-$(".save").addClass("saveBtn");
+        }
+};
 
 
 
 
-//Function call
+
+
+//Function calls
 compareTime(currentTime, timeBlock1, event1);
 compareTime(currentTime, timeBlock2, event2);
 compareTime(currentTime, timeBlock3, event3);
@@ -54,14 +62,11 @@ compareTime(currentTime, timeBlock9, event9);
 
 
 
+const saveToLocalStorage = () => {
+    localStorage.setItem('event1'.text.value )
+}
 
-/*console.log(currentTime)
-console.log(timeBlock)
-console.log(moment(currentTime, 'h:mma').isAfter(moment(timeBlock, 'h:mma')));*/
+button.addEventListener("click", saveToLocalStorage)
 
 
-/*var beginningTime = moment('8:45am', 'h:mma');
-var endTime = moment('9:00am', 'h:mma');
-console.log(beginningTime.isBefore(endTime)); // true
-console.log(beginningTime.toDate()); // Mon May 12 2014 08:45:00
-console.log(endTime.toDate()); // Mon May 12 2014 09:00:00*/
+
